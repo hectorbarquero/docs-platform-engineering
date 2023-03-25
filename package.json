@@ -1,0 +1,18 @@
+{
+  "name": "ci-cd_test",
+  "version": "1.0.0",
+  "description": "testing auto-run CI-CD tooling.",
+  "main": "https://github.com/hectorbarquero/ci-cd_test.git",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonfile": "^6.1.0",
+    "moment": "^2.29.4",
+    "random": "^4.1.0",
+    "simple-git": "^3.17.0"
+  }
+}
