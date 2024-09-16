@@ -12,26 +12,46 @@ import jsonfile from 'jsonfile';
 import random from 'random';
 const FILE_PATH = './data.json';
 
-//recursion for y weeks, x days
-const makeCommit = n => {
-    if(n===0) return simpleGit().push();
-    const x = random.int(0,54);
-    const y = random.int(0,6);
-    const DATE = moment().subtract(6,'y').add(1, 'd')
-                    .add(x, 'w').add(y,'d').format();
+const git = simpleGit(); // Initialize Git in the working directory
+
+// recursion for y weeks, x days in 2023-2024
+const makeCommit = async n => {
+    if (n === 0) {
+        console.log("All commits made, pushing to remote.");
+        return git.push().catch(err => console.error("Push failed:", err));
+    }
+
+    // Set start and end dates for 2023-2024
+    const startDate = moment('2023-05-01');
+    const endDate = moment('2024-09-01');
+
+    // Calculate a random number of days between the start and end dates
+    const randomDays = random.int(0, endDate.diff(startDate, 'days'));
+
+    // Add the random number of days to the start date to get a commit date
+    const DATE = startDate.add(randomDays, 'days').format();
 
     const data = {
         date: DATE
-    }
-    //log date to check
-    console.log(DATE);
+    };
 
-    //add a json callback to write a-synchronously
-    jsonfile.writeFile(FILE_PATH, data, ()=>{
-    // git commit --date='an example date'
-    simpleGit().add([FILE_PATH]).commit(DATE, {'--date': DATE }, 
-    makeCommit.bind(this, --n));
+    // Log date to check
+    console.log(`Committing for date: ${DATE}`);
+
+    // Write to JSON asynchronously
+    jsonfile.writeFile(FILE_PATH, data, async () => {
+        try {
+            // Git add and commit
+            await git.add([FILE_PATH]);
+            await git.commit(`Commit for date ${DATE}`, {'--date': DATE});
+
+            // Recurse for the next commit
+            makeCommit(n - 1);
+        } catch (err) {
+            console.error("Commit failed:", err);
+        }
     });
-}
+};
 
-makeCommit(87);
+// Start making 150 commits
+makeCommit(150);
