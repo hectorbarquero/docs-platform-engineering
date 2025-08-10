@@ -21,9 +21,9 @@ const makeCommit = async n => {
         return git.push().catch(err => console.error("Push failed:", err));
     }
 
-    // Set start and end dates for 2023-2024
-    const startDate = moment('2023-05-01');
-    const endDate = moment('2024-09-01');
+    // Set start and end dates
+    const startDate = moment('2024-10-01');
+    const endDate = moment('2025-08-10');
 
     // Calculate a random number of days between the start and end dates
     const randomDays = random.int(0, endDate.diff(startDate, 'days'));
@@ -53,5 +53,5 @@ const makeCommit = async n => {
     });
 };
 
-// Start making 150 commits
-makeCommit(150);
+// Start making commits
+makeCommit(227);
