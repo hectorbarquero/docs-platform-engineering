@@ -1,0 +1,75 @@
+<!-- barquerohr: version two removes old calc method of guessing padding for top and bottom, hardcodes them instead for predictability. Adds zindex overrides, and aui overrides to allow flyout menus to work while hiding labels. -->
+
+<style>
+  .wiki-content .columnLayout {
+    display: flex;
+  }
+
+  .wiki-content .contentLayout2 .columnLayout .cell {
+    padding-left: 15px;
+    padding-right: 55px;
+  }
+
+  .wiki-content .columnLayout .cell.aside {          
+    position: fixed;
+    width: calc(20% - 10px);
+    top: 170px;
+    bottom: 40px;
+    z-index: 1000;
+    background: white;
+    box-sizing: border-box;
+    overflow-y: auto;
+    right: 0;
+  }
+
+  .toc-macro {
+    font-size: 16px;
+  }
+
+  .wiki-content .columnLayout .cell:not(.aside) {
+    margin-right: calc(20%);
+  }
+
+  .back-to-top-container {
+    text-align: right;
+    margin-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .back-to-top-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1d1d1d;
+    color: white !important;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 30px;
+  }
+
+  #header,
+  .aui-header {
+    position: relative;
+    z-index: 5000;
+  }
+
+  .aui-dropdown2,
+  .aui-header .aui-dropdown2,
+  .aui-header .aui-dropdown2.aui-style-default {
+    z-index: 10000 !important;
+  }
+</style>
+
+<!-- barquerohr: back to top button, use this if you want a one-click method to go up to start of page -->
+
+<div class="back-to-top-container">
+  <a href="#" class="back-to-top-btn" onclick="scrollToTop()">Back to top</a>
+</div>
+
+<script>
+  function scrollToTop() {
+    AJS.$('html, body').animate({ scrollTop: 0 }, 'fast');
+    return false;
+  }
+</script>
