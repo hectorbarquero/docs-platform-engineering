@@ -6,7 +6,19 @@ This script reads a list of words from `words.txt`, scans one or more .md files,
 
 it's used for lightweight documentation review, such as finding deprecated terms, banned terms, product names, style-guide issues, or words that need manual review.
 
+When we export wiki's, we can automate some of the maintenance of docs to improve speed and cost. This means rather than pushing thousands of manual updates, we can work the changes in .xml and re-submit.|
+
 ## Requirements
+
+You need to use pandoc to convert the wiki .html to .md, or go export > .pdf > pandoc to .html > pandoc to .md.
+
+Use a .txt for the input. Modify the code to handle xml instead if desired.
+
+format of input: words.txt
+format of files to read (exports): filename1.md, filename2.md
+
+to add new exports, add new process functions. Copy existing process functions, change project key name, and add them to the combine array in the combine section.
+---
 
 - node.js
 - A `words.txt` file
