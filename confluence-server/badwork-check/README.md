@@ -18,7 +18,8 @@ format of input: words.txt
 format of files to read (exports): filename1.md, filename2.md
 
 to add new exports, add new process functions. Copy existing process functions, change project key name, and add them to the combine array in the combine section.
----
+
+
 
 - node.js
 - A `words.txt` file
