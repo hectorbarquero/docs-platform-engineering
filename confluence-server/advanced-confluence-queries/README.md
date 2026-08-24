@@ -31,7 +31,7 @@ Alternatively you can use this one to find pages with labels, which may need to 
 ## Check pages within a date range
 You can use this query to find docs within a date range, but it may pull some with **modifiedDate** in the same range. If you want a strict check for **creationDate**, use the Lucene query instead. Switch your space key to the appropriate one.
 
-`spacekey=EXAMPLE AND created >= "2012-01-01" AND created <= "2015-12-31"`
+`spacekey:EXAMPLE AND created:[20260301 TO 20260824]`
 
 
 ## Lucene alternative for checking creation date
